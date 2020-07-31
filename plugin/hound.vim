@@ -38,7 +38,7 @@ endfunction
 function! hound#buildWebUrl(query_string, clean_repos)
     let sanitized_query_string = hound#encodeUrl(a:query_string)
 
-    return g:hound_base_url . ':' . g:hound_port
+    return g:hound_base_url
                 \. '?repos=' . a:clean_repos
                 \. '&i=' . g:hound_ignore_case
                 \. '&q=' . sanitized_query_string
@@ -51,7 +51,6 @@ function! hound#fetchResults(query_string, clean_repos)
     let clean_repos = substitute(tolower(g:hound_repos), " ","","g")
 
     let s:api_full_url = g:hound_base_url
-                \. ":" . g:hound_port
                 \. '/api/v1/search?'
                 \. '&repos=' . a:clean_repos
                 \. '&i=' . g:hound_ignore_case
